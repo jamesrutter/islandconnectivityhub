@@ -1,18 +1,15 @@
 # FONTS
-1. Oswald
+1. Poppins
 Use for: Headlines
 Weights: Regular, Semi-Bold
-A modern reworking of the classic gothic style, Oswald delivers bold, vertical energy—ideal for large-scale headlines, hero text, and primary calls-to-action.
 
-2. League Spartan
+1. League Spartan
 Use for: Subheaders, Section Titles, Short Pull Quotes
 Weights: Regular, Bold
-With its strong geometric forms and wide letterforms, League Spartan creates a confident presence that pairs well with both modern and traditional aesthetics.
 
-3. Open Sans
+1. Open Sans
 Use for: Body Copy
 Weight: Regular
-Designed for legibility across screen and print, Open Sans is a versatile workhorse—clean, humanist, and easy to read in paragraphs, captions, and longer content blocks.
 
 
 # Colors
