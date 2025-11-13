@@ -1,3 +1,689 @@
 ---
-return Astro.redirect("/schedule.pdf");
+import Layout from "../../layouts/layout.astro";
+
+const holiday_gallery = [
+  {
+    path: "/photos/holiday-1.jpeg",
+    alt: "Festive Main Street in Stonington with snow-covered storefronts",
+  },
+  {
+    path: "/photos/holiday-2.jpeg",
+    alt: "Holiday decorations and schedule details for Stonington events",
+  },
+  {
+    path: "/photos/holiday-3.jpeg",
+    alt: "Working waterfront in winter with holiday wreath and lobster graphic",
+  },
+];
+
+const event_schedule = [
+  {
+    date_label: "Nov 29",
+    title: "Small Business Saturday",
+    details: [
+      "Holiday Craft Fair (Island Community Center)",
+      "Narrative Food + Friends (The Hub)",
+      "Holiday Specials at J. McVeigh’s",
+    ],
+  },
+  {
+    date_label: "Dec 2",
+    title: "Crafting & Making",
+    details: [
+      "4–6 pm Picture Frames (Adult Education)",
+      "6 pm Wreathmaking (Island Community Center)",
+    ],
+  },
+  {
+    date_label: "Dec 3",
+    title: "Holiday Open Mic",
+    details: ["Local Artists (Stonington Opera House)"],
+  },
+  {
+    date_label: "Dec 4",
+    title: "Merry on Main",
+    details: ["3–7 pm Local Makers Popup (Island Approaches)"],
+  },
+  {
+    date_label: "Dec 5",
+    title: "More Making!",
+    details: ["5–7 pm Clay Winter Trinkets with Jadyn LaDeau"],
+  },
+  {
+    date_label: "Dec 5–7",
+    title: "Festival of Trees",
+    details: ["Fri 4–8 pm • Sat 9–4 • Sun 9–noon (Island Community Center)"],
+  },
+  {
+    date_label: "Dec 6",
+    title: "Holiday Food Popup",
+    details: ["10 am–1 pm Narrative Food Holiday Popup (The Hub)"],
+  },
+  {
+    date_label: "Dec 7",
+    title: "Holiday Dance Show",
+    details: ["3 pm Sue’s School Annual Holiday Performance (Reach)"],
+  },
+  {
+    date_label: "Dec 11",
+    title: "Baker Pop Up",
+    details: ["3–7 pm Seasons Sweeting (Island Approaches)"],
+  },
+  {
+    date_label: "Dec 12–13",
+    title: "Stocking Stuffer Sale",
+    details: ["9 am–5 pm Island Approaches"],
+  },
+  {
+    date_label: "Dec 12",
+    title: "Community Tree Lighting",
+    details: [
+      "4 pm Town Tree Extravaganza (Hagan Dock)",
+      "Food, Santa, Stories, and Songs with MCCF",
+    ],
+  },
+  {
+    date_label: "Dec 13",
+    title: "Winter Wonderland",
+    details: ["12–2 pm Kids’ Craft Day (Aragosta)"],
+  },
+  {
+    date_label: "Dec 13",
+    title: "Holiday Food Popup",
+    details: ["10 am–4 pm Narrative Food Holiday Popup (The Hub)"],
+  },
+  {
+    date_label: "Dec 14",
+    title: "Winter Wonderland",
+    details: ["11 am–4 pm Artisan Market (Aragosta)"],
+  },
+  {
+    date_label: "Dec 14",
+    title: "A Christmas Carol",
+    details: ["2–6 pm Community Read (Stonington Opera House)"],
+  },
+  {
+    date_label: "Dec 16",
+    title: "Holiday Cards & Paper Sculptures",
+    details: ["5–7 pm Laser Cutter Makers Night (The Hub)"],
+  },
+  {
+    date_label: "Dec 18",
+    title: "Holiday Trivia Night",
+    details: ["6–8 pm Stonington Opera House"],
+  },
+  {
+    date_label: "Dec 18",
+    title: "Baker Pop Up",
+    details: ["3–7 pm Bake the Halls (Island Approaches)"],
+  },
+  {
+    date_label: "Dec 19",
+    title: "Holiday Concert",
+    details: ["6 pm A Very Merry Holiday Concert (Stonington Opera House)"],
+  },
+];
+
+const sponsor_logos = [
+  {
+    name: "44 North Coffee",
+    path: "/sponsor-logos/44-north.jpg",
+  },
+  {
+    name: "Deer Isle Adult & Community Education",
+    path: "/sponsor-logos/deer-isle-adult-education.png",
+  },
+  {
+    name: "Greenhead Lobster",
+    path: "/sponsor-logos/greenhead-lobster.jpg",
+  },
+  {
+    name: "27 Fathoms Waterfront Grille",
+    path: "/sponsor-logos/27-fathoms.png",
+  },
+  {
+    name: "Boyce’s Motel",
+    path: "/sponsor-logos/boyces-motel.jpg",
+  },
+  {
+    name: "Maine Center for Coastal Fisheries",
+    path: "/sponsor-logos/mccf.jpg",
+  },
+  {
+    name: "Stonington Opera House",
+    path: "/sponsor-logos/opera-house.png",
+  },
+  {
+    name: "The Island Agency",
+    path: "/sponsor-logos/island-agency.jpeg",
+  },
+];
 ---
+
+<Layout>
+  <main class="holiday-page">
+    <section class="hero">
+      <div class="snow-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Experience Authentic Maine</p>
+        <h1>Come Home for the Holidays</h1>
+        <p class="lead">
+          Celebrate the season in Maine’s #1 port with makers, music, lights,
+          and community joy across downtown Stonington.
+        </p>
+        <div class="cta-row">
+          <a href="#schedule" class="cta-button">Explore the Schedule</a>
+          <a href="#sponsors" class="secondary-link">Meet our Partners</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="intro-card">
+        <h2>Shop, Eat, Stay, Experience Stonington</h2>
+        <p>
+          Island businesses and makers are rolling out evergreen décor, cozy
+          pop-ups, seasonal treats, and waterfront festivities all December
+          long. Come for a day trip or stay the weekend—there’s a holiday
+          happening almost every day.
+        </p>
+        <p>
+          Scroll for the full calendar, find your favorite events, and let the
+          working waterfront welcome you home.
+        </p>
+      </div>
+    </section>
+
+    <section class="schedule" id="schedule">
+      <header class="section-header">
+        <h2>Holiday Highlights &amp; Events</h2>
+        <p>
+          From Small Business Saturday through a waterfront tree lighting and a
+          very merry concert finale, here’s everything happening in downtown
+          Stonington.
+        </p>
+      </header>
+      <div class="schedule-grid">
+        {
+          event_schedule.map((event) => (
+            <article class="schedule-card">
+              <header>
+                <span class="date-badge">{event.date_label}</span>
+                <h3>{event.title}</h3>
+              </header>
+              <ul>
+                {event.details.map((detail) => (
+                  <li>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="holiday-gallery">
+      <header class="section-header">
+        <h2>Holiday Lights &amp; Waterfront Magic</h2>
+        <p>
+          Wander downtown after dusk to see the harbor sparkle—lobster trap
+          trees, cheerful shopfronts, and light-filled pathways guide you
+          through town.
+        </p>
+      </header>
+      <div class="gallery-grid">
+        {
+          holiday_gallery.map((photo, index) => (
+            <figure class="gallery-card">
+              <img
+                src={photo.path}
+                alt={photo.alt}
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </figure>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="sponsors" id="sponsors">
+      <header class="section-header">
+        <h2>Thank You to Our Holiday Sponsors</h2>
+        <p>
+          These community champions make the “Home for the Holidays” celebration
+          sparkle. Show them some love while you’re in town.
+        </p>
+      </header>
+      <div class="sponsor-grid">
+        {
+          sponsor_logos.map((sponsor) => (
+            <figure class="sponsor-card">
+              <img src={sponsor.path} alt={sponsor.name} loading="lazy" />
+            </figure>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="plan-your-visit">
+      <div class="visit-card">
+        <h2>Plan Your Waterfront Weekend</h2>
+        <p>
+          Cozy inns, lobster shacks, art shops, and makers’ studios line our
+          harbor. Bundle up, wander Main Street, and savor coastal Maine in its
+          brightest season.
+        </p>
+        <a
+          class="cta-button"
+          href="https://www.stoningtonmaine.org"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Discover More Stonington
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :root {
+    color-scheme: only light;
+  }
+
+  .holiday-page {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    padding-bottom: 6rem;
+    background: linear-gradient(180deg, #f5fbff 0%, #ffffff 100%);
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    padding: clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 6vw, 7rem);
+    background-image: linear-gradient(
+        118deg,
+        rgba(2, 16, 28, 0.78),
+        rgba(13, 59, 102, 0.55)
+      ),
+      url("/photos/snowy-stonington.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.55),
+      transparent 55%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .snow-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.55'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3Ccircle cx='80' cy='40' r='3'/%3E%3Ccircle cx='140' cy='30' r='2'/%3E%3Ccircle cx='50' cy='110' r='2'/%3E%3Ccircle cx='120' cy='120' r='3'/%3E%3Ccircle cx='30' cy='150' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    animation: drift 24s linear infinite;
+    z-index: 1;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 520px;
+    color: #f4fbff;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(3rem, 7vw, 4.75rem);
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-content .eyebrow {
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .hero-content .lead {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(232, 244, 255, 0.92);
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d62828 0%, #f77f00 100%);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    box-shadow: 0 12px 24px rgba(214, 40, 40, 0.25);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(214, 40, 40, 0.3);
+  }
+
+  .secondary-link {
+    font-weight: 700;
+    color: #0d3b66;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.8rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(5, 45, 76, 0.15);
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .secondary-link:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-3px);
+  }
+
+  .hero-gallery {
+    display: none;
+  }
+
+  .intro {
+    display: flex;
+    justify-content: center;
+    padding-inline: clamp(1.5rem, 5vw, 6rem);
+  }
+
+  .intro-card {
+    max-width: 960px;
+    background: white;
+    border-radius: 2rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    box-shadow: 0 18px 45px rgba(26, 72, 112, 0.12);
+    border: 1px solid rgba(5, 45, 76, 0.08);
+    text-align: center;
+  }
+
+  .intro-card h2 {
+    margin-top: 0;
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    color: #0d3b66;
+  }
+
+  .intro-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #224b67;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem auto;
+    padding-inline: 1rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.25rem, 4.5vw, 3rem);
+    color: #0d3b66;
+  }
+
+  .section-header p {
+    color: #35506b;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .schedule {
+    padding-inline: clamp(1.5rem, 5vw, 6rem);
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .schedule-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 12px 30px rgba(13, 59, 102, 0.1);
+    border: 1px solid rgba(13, 59, 102, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .schedule-card header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .date-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0d3b66 0%, #1d5a8c 100%);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .schedule-card h3 {
+    margin: 0;
+    color: #0d3b66;
+    font-size: 1.35rem;
+  }
+
+  .schedule-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .schedule-card li {
+    padding-left: 1.4rem;
+    position: relative;
+    color: #35506b;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  .schedule-card li::before {
+    content: "❄";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #d62828;
+    font-size: 0.9rem;
+  }
+
+  .holiday-gallery {
+    padding-inline: clamp(1.5rem, 5vw, 6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .gallery-card {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(5, 45, 76, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .sponsors {
+    padding-inline: clamp(1.5rem, 5vw, 6rem);
+  }
+
+  .sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .sponsor-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(13, 59, 102, 0.08);
+    border: 1px solid rgba(13, 59, 102, 0.08);
+  }
+
+  .sponsor-card img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    filter: saturate(1.1);
+  }
+
+  .plan-your-visit {
+    display: flex;
+    justify-content: center;
+    padding-inline: clamp(1.5rem, 5vw, 6rem);
+  }
+
+  .visit-card {
+    max-width: 800px;
+    width: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(5, 45, 76, 0.92),
+      rgba(13, 59, 102, 0.88)
+    );
+    color: white;
+    border-radius: 2rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 20px 45px rgba(5, 45, 76, 0.35);
+  }
+
+  .visit-card h2 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 3rem);
+  }
+
+  .visit-card p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .visit-card .cta-button {
+    align-self: center;
+    box-shadow: 0 12px 30px rgba(247, 127, 0, 0.3);
+  }
+
+  @media (max-width: 960px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-gallery {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .holiday-page {
+      gap: 5rem;
+    }
+
+    .hero {
+      padding: clamp(2.5rem, 8vw, 4rem) 1.75rem;
+    }
+
+    .cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .intro-card,
+    .visit-card {
+      border-radius: 1.5rem;
+    }
+
+    .schedule-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(45%, 65%, 0);
+    }
+  }
+</style>
