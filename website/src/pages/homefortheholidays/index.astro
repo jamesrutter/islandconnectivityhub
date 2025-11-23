@@ -83,6 +83,11 @@ const event_schedule = [
     ],
   },
   {
+    date_label: "Dec 12",
+    title: "Sip and Shop",
+    details: ["4–7 pm J. McVeigh Jewelry"],
+  },
+  {
     date_label: "Dec 13",
     title: "Winter Wonderland",
     details: ["12–2 pm Kids’ Craft Day (Aragosta)"],
@@ -128,34 +133,42 @@ const sponsor_logos = [
   {
     name: "44 North Coffee",
     path: "/sponsor-logos/44-north.jpg",
+    url: "https://www.44northcoffee.com",
   },
   {
     name: "Deer Isle Adult & Community Education",
     path: "/sponsor-logos/deer-isle-adult-education.png",
+    url: "https://maineadulted.org/location/deer-isle-adult-education/",
   },
   {
     name: "Greenhead Lobster",
     path: "/sponsor-logos/greenhead-lobster.jpg",
+    url: "https://www.greenheadlobster.com",
   },
   {
     name: "27 Fathoms Waterfront Grille",
     path: "/sponsor-logos/27-fathoms.png",
+    url: "https://27fathoms.net/",
   },
   {
-    name: "Boyce’s Motel",
+    name: "Boyce's Motel",
     path: "/sponsor-logos/boyces-motel.jpg",
+    url: "https://www.boycesmotel.com",
   },
   {
     name: "Maine Center for Coastal Fisheries",
     path: "/sponsor-logos/mccf.jpg",
+    url: "https://www.coastalfisheries.org",
   },
   {
     name: "Stonington Opera House",
     path: "/sponsor-logos/opera-house.png",
+    url: "https://www.operahousearts.org",
   },
   {
     name: "The Island Agency",
     path: "/sponsor-logos/island-agency.jpeg",
+    url: "https://theislandagency.com/",
   },
 ];
 ---
@@ -258,7 +271,9 @@ const sponsor_logos = [
         {
           sponsor_logos.map((sponsor) => (
             <figure class="sponsor-card">
-              <img src={sponsor.path} alt={sponsor.name} loading="lazy" />
+              <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
+                <img src={sponsor.path} alt={sponsor.name} loading="lazy" />
+              </a>
             </figure>
           ))
         }
@@ -593,6 +608,23 @@ const sponsor_logos = [
     justify-content: center;
     box-shadow: 0 10px 25px rgba(13, 59, 102, 0.08);
     border: 1px solid rgba(13, 59, 102, 0.08);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .sponsor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(13, 59, 102, 0.15);
+  }
+
+  .sponsor-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
   }
 
   .sponsor-card img {
@@ -600,6 +632,11 @@ const sponsor_logos = [
     max-height: 80px;
     object-fit: contain;
     filter: saturate(1.1);
+    transition: transform 0.2s ease;
+  }
+
+  .sponsor-card:hover img {
+    transform: scale(1.05);
   }
 
   .plan-your-visit {
